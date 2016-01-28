@@ -10,7 +10,7 @@ $tipo = $_POST['tipo'];
 $img=$_FILES['img']['name'];
 $ruta=$_FILES['img']['tmp_name'];
 $ext = pathinfo($img, PATHINFO_EXTENSION);//esto lee la extencion del archivo
-$destino="img/pruebas/"$comuna.$nombre.".".$ext;
+$destino="img/logos/"$comuna.$nombre.".".$ext;
 
 //copio las imagenes en la carpeta de destino img
 copy($ruta,$destino);

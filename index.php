@@ -30,10 +30,9 @@
 		</div>
 		
 		<div class="cuerpo">
-		<a href="" ng-click="prueba()">prueba</a>
 			<h3>colegios mas visitados </h3>
 
-			<div ng-repeat="colegio in texto"><div class="logo"><img src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p></div></div>
+			<div ng-repeat="colegio in texto"><div class="logo"><img src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p><p>{{"Tipo: "+colegio.tipo}}</p></div></div>
 			
 		</div>
 		<div class="footer">
