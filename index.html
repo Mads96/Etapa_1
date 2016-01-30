@@ -1,5 +1,5 @@
-<?php include("php/conexion.php");
-
+<?php 
+//include("php/conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app="ajax">
@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="css/palette.css">
 </head>
 <body class="fondo-light-verde" ng-controller="ajaxController">
-
 
 	<div class="contenedor ">
 		<div class="header">
@@ -30,9 +29,9 @@
 		</div>
 		
 		<div class="cuerpo">
-			<h3>colegios mas visitados </h3>
+			<h3 ng-click="lista()">colegios mas visitados </h3> 
 
-			<div ng-repeat="colegio in texto"><div class="logo"><img src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p><p>{{"Tipo: "+colegio.tipo}}</p></div></div>
+			<div ng-repeat="colegio in texto"><div class="logo"><img ng-src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p><p>{{"Tipo: "+colegio.tipo}}</p></div></div>
 			
 		</div>
 		<div class="footer">
