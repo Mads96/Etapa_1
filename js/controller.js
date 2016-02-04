@@ -3,29 +3,45 @@ angular.module("ajax",[])
 	{
 
 		//inicio funcion de prueba
-		$scope.prueba= function(){
-			console.log("funciona");
+		$scope.prueba= function($valor){
+			console.log($valor);
 		}
 		//fin funcion de prueba
-		$scope.lista= function(){
-			$scope.texto=[];
-			$http.get("./php/query.php?id=2").
+
+
+//Scope lista
+		$scope.lista= function($id){
+			$ruta="./php/query.php?id=2&comuna_id="+$id;
+			$scope.colegios=[];
+			$http.get($ruta).
 			success(function(data){
 				console.log(data);
-				$scope.texto=data;
+				$scope.colegios=data;
 
 			})
 			.error(function(err){
 
 			});
 		}
+//fin scope lista
+		
 
-
-		$scope.texto=[];
+		$scope.colegios=[];
 		$http.get("./php/query.php?id=1")
 		.success(function(data){
 				console.log(data);
-				$scope.texto=data;
+				$scope.colegios=data;
+
+			})
+			.error(function(err){
+
+			});
+
+		$scope.comunas=[];
+		$http.get("./php/query.php?id=4")
+		.success(function(data){
+				console.log(data);
+				$scope.comunas=data;
 
 			})
 			.error(function(err){

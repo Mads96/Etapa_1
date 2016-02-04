@@ -8,11 +8,12 @@
 	<title>colegios</title>
 	<script src="js/angular.min.js"></script>
 	<script src="js/controller.js"></script>
+	
 	<link rel="stylesheet" href="css/estilo.css">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/palette.css">
 </head>
-<body class="fondo-light-verde" ng-controller="ajaxController">
+<body class="fondo-light-verde" ng-controller="ajaxController" >
 
 	<div class="contenedor ">
 		<div class="header">
@@ -29,10 +30,13 @@
 		</div>
 		
 		<div class="cuerpo">
-			<h3 ng-click="lista()">colegios mas visitados </h3> 
-
-			<div ng-repeat="colegio in texto"><div class="logo"><img ng-src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p><p>{{"Tipo: "+colegio.tipo}}</p></div></div>
-			
+  			
+			<h3 ng-click="lista(30)" >colegios mas visitados </h3> 
+			<select name="comuna" id="" ng-model="comuna">
+				<option ng-repeat="comuna in comunas" value={{comuna.id}}>{{comuna.nombre}}</option>
+			</select>
+			<a href="" ng-click="lista(comuna)">buscar</a>
+			<div ng-repeat="colegio in colegios" ><div class="logo" ><img ng-src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p><p>{{"Tipo: "+colegio.tipo}}</p></div></div>	<h1 ng-show="!colegios.length">Sin RESULTADOS {{colegios.length}}</h1>		
 		</div>
 		<div class="footer">
 			<h2>Nuestro proyecto</h2>

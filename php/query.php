@@ -1,17 +1,21 @@
 <?php 
-
+include("conexion.php");
 $id = $_GET['id'];
 
 /////////////////////////MENU///////////////////
 switch ($id) {
 	case '1':
-		colegios();
+		colegios($con);
 		break;
 	case '2':
-		colegiost();
+		$comuna_id= $_GET['comuna_id'];
+		colegios_comuna($con, $comuna_id);
 		break;
 	case '3':
 		# code...
+		break;
+	case '4':
+		comunas_old($con);
 		break;
 	default:
 		# code...
@@ -22,9 +26,9 @@ switch ($id) {
 
 /////////////////////////colegios////////////////////////////////////////
 
-function colegios(){
-include("conexion.php");	
-$sqlS = "Select * from colegios  order by colegio_id";
+function colegios($con){
+	
+$sqlS = " SELECT * FROM colegios ";
 $res =$con->query($sqlS);
 $texto=array();
 while ( $fila=$res->fetch_assoc()) {
@@ -43,9 +47,14 @@ while ( $fila=$res->fetch_assoc()) {
 /////////////////////////colegios FIN/////////////////////////////////////
 
 /////////////////////////colegiost /////////////////////////////////////
-function colegiost(){
-include("conexion.php");	
-$sqlS = "Select * from colegios WHERE colegio_id = 1 order by colegio_id";
+function colegios_comuna($con, $comuna_id){
+	
+if (!restringir($con)) {
+	echo "no se ve";
+} else {
+	
+
+$sqlS = "Select * from colegios WHERE comuna_id = $comuna_id order by colegio_id";
 $res =$con->query($sqlS);
 $texto=array();
 while ( $fila=$res->fetch_assoc()) {
@@ -59,14 +68,14 @@ while ( $fila=$res->fetch_assoc()) {
 }
 	$texto= json_encode($texto);
 	echo $texto;
-	$con->close();
+	$con->close();}
 }///////////////////////////////colegiost FIN/////////////////////////////////////
 
 //////////////////////////////////////comunas/////////////////////////////////
 function comunas($con,$comuna_id){
 	
 
-$consulta="SELECT * FROM comunas WHERE comuna_id=$comuna_id";
+$consulta="SELECT * FROM comunas WHERE comuna_id=$comuna_id order by comuna_id";
 $resultado=$con->query($consulta);
 while ($fila=$resultado->fetch_array()) {
 $nombre= $fila['comuna_nombre'];
@@ -75,6 +84,23 @@ $nombre= $fila['comuna_nombre'];
 return $prueba;
 }
 //////////////////////////////////////comunas FIN/////////////////////////////////
+
+function comunas_old($con){
+	
+
+$consulta="SELECT * FROM comunas order by comuna_id";
+$resultado=$con->query($consulta);
+$texto=array();
+while ($fila=$resultado->fetch_array()) {
+$nombre= $fila['comuna_nombre'];
+$id= $fila['comuna_id'];
+$texto[]= array('id'=> $id, 'nombre'=>$nombre);
+}	
+	$texto= json_encode($texto);
+	echo $texto;
+	$con->close();
+}
+
 
 //////////////////////////////////////tipos/////////////////////////////////
 function tipos($con,$tipo_id){
@@ -97,7 +123,16 @@ while ($fila=$resultado->fetch_array()) {
 return $nombre;
 }
 //////////////////////////////////////tipos FIN/////////////////////////////////
-
+function restringir($con){
+session_start();
+if(isset($_SESSION['username'])){
+echo "Si me puedes ver <a href='logout.php'>cerrar</a> ".$_SESSION['username'];
+return true;
+}else{
+	//header('location: index.html');
+	return true;
+}
+}
 
 
 
