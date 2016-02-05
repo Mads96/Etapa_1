@@ -1,0 +1,28 @@
+	<div class="contenedor " ng-controller="listas">
+		<div class="header">
+			<h1>Colegios en red </h1>
+			<div class="nav">
+				<div class="menu"><ul >
+				<li><a href="#/contacto" >Inicio</a></li>
+				<li><a href="#">Colegios</a></li>
+				<li><a href="#">Buscar</a></li>
+			</ul></div>
+			<div class="fondo fondo-dark-verde"></div>
+			
+		</div>
+		</div>
+		
+		<div class="cuerpo">
+  			
+			<h3 ng-click="porComuna(30)" >colegios mas visitados </h3> 
+			<select name="comuna" id="" ng-model="comuna">
+				<option ng-repeat="comuna in comunas" value={{comuna.id}}>{{comuna.nombre}}</option>
+			</select>
+			<a href="" ng-click="porComuna(comuna)">buscar</a>
+			<div ng-repeat="colegio in colegios" ><div class="logo" ><img ng-src={{colegio.logo}}><p>{{"nombre: "+colegio.nombre}}</p><p>{{"Comuna: "+colegio.comuna}}</p><p>{{"Tipo: "+colegio.tipo}}</p></div></div>	<h1 ng-show="!colegios.length">SIN RESULTADOS</h1>		
+		</div>
+		<div class="footer">
+			<h2>Nuestro proyecto</h2>
+			<p>Colegios en red es un proyecto de integracion pensado en los colegios</p>
+		</div>
+	</div>

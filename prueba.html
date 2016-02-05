@@ -1,0 +1,23 @@
+<!-- index.html -->  
+<html ng-app='angularRoutingApp'>  
+<head>  
+</head>  
+<body ng-controller='mainController'>  
+  <header>
+    <h1>Angular Routing</h1>
+      <nav> 
+        <ul> 
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#acerca">Acerca de</a></li>
+          <li><a href="#contacto">Contacto</a></li>         </ul> 
+      </nav>
+    </header>
+    <div id="main">
+      <!-- Aquí inyectamos las vistas -->
+      <div ng-view></div> 
+    </div>
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/angular-route.min.js"></script>
+  </body>
+  </html>

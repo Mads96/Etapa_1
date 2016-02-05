@@ -1,11 +1,35 @@
-angular.module('ngrepeatSelect', [])
- .controller('ExampleController', ['$scope', function($scope) {
-   $scope.data = {
-    repeatSelect: null,
-    availableOptions: [
-      {id: '1', name: 'Option A'},
-      {id: '2', name: 'Option B'},
-      {id: '3', name: 'Option C'}
-    ],
-   };
-}]);
+// Creación del módulo
+var angularRoutingApp = angular.module('angularRoutingApp', ['ngRoute']);
+
+// Configuración de las rutas
+angularRoutingApp.config(function($routeProvider) {
+
+    $routeProvider
+        .when('/', {
+            templateUrl : 'pages/home.html',
+            controller  : 'mainController'
+        })
+        .when('/acerca', {
+            templateUrl : 'pages/acerca.html',
+            controller  : 'aboutController'
+        })
+        .when('/contacto', {
+            templateUrl : 'pages/contacto.html',
+            controller  : 'contactController'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});
+
+angularRoutingApp.controller('mainController', function($scope) {
+    $scope.message = 'Hola, Mundo!';
+});
+
+angularRoutingApp.controller('aboutController', function($scope) {
+    $scope.message = 'Esta es la página "Acerca de"';
+});
+
+angularRoutingApp.controller('contactController', function($scope) {
+    $scope.message = 'Esta es la página de "Contacto", aquí podemos poner un formulario';
+});
